@@ -1,56 +1,15 @@
 package stack;
 
-import java.util.ArrayList;
+public interface Stack<T> {
 
-public class Stack<T> {
-    private int size;
+     void push(T element);
 
-    private int top = -1;
-    ArrayList<T> stackArray;
+     T pop();
 
-    public Stack(int size) {
+     T peek();
 
-        this.size = size;
-        stackArray = new ArrayList<T>(size);
-    }
+     boolean isEmpty();
 
-    public T push(T element) {
+     boolean isFull();
 
-        top = top + 1;
-
-        if (top < stackArray.size())
-            stackArray.set(top, element);
-        else
-            stackArray.add(element);
-        return element;
-    }
-
-
-    public T pop() {
-
-        if (top == -1) {
-
-            return null;
-        } else {
-            T removedElem = stackArray.get(top);
-            top--;
-            return removedElem;
-        }
-    }
-
-    public boolean isEmpty() {
-
-        return (top == -1);
-    }
-
-
-    public T top() {
-
-        if (top == -1) {
-
-
-            return null;
-        } else
-            return stackArray.get(top);
-    }
 }

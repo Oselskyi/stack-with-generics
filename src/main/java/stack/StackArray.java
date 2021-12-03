@@ -1,6 +1,6 @@
-package stackArray;
+package stack;
 
-public class StackArray<T> {
+public class StackArray<T> implements Stack<T> {
 
     private T[] stackArray;
     private int stackTop;
@@ -10,7 +10,7 @@ public class StackArray<T> {
         this.stackArray = stackArray;
         stackTop = -1;
     }
-
+    @Override
     public void push(T element) {
 
         if (stackTop + 1 == stackArray.length) {
