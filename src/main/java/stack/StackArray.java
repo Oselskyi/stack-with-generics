@@ -19,6 +19,10 @@ public class StackArray<T> implements Stack<T> {
     }
 
     public T pop() {
+        if (stackTop == -1) {
+
+            return null;
+        }
 
         T poped = stackArray[stackTop];
         stackArray[stackTop] = null;
@@ -28,6 +32,10 @@ public class StackArray<T> implements Stack<T> {
     }
 
     public T peek() {
+        if (stackTop == -1) {
+
+            return null;
+        }
 
         return stackArray[stackTop];
     }

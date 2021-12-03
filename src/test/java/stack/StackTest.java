@@ -10,143 +10,141 @@ import static org.junit.jupiter.api.Assertions.*;
 class StackTest {
 
     @Test
-    void pushList() {
+    void push() {
 
         ArrayList<Integer> numbers = new ArrayList<>(7);
         ArrayList<Integer> numbers1 = new ArrayList<>(Arrays.asList(1, 2, 3));
 
-        StackList<Integer> stackList = new StackList<Integer>(numbers);
+        Stack<Integer>  stackList = new StackList<Integer>(numbers,5);
         stackList.push(1);
         stackList.push(2);
         stackList.push(3);
         assertEquals(numbers1, numbers);
 
-    }
+        String[] strings = new String[5];
+        String[] strings1 = {"1", "2", "3", null, null};
 
-    @Test
-    void pushArray() {
-
-        String[] array = new String[5];
-        String[] arrayString = {"1", "2", "3", null, null};
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<String>  stackArray = new StackArray<>(strings);
         stackArray.push("1");
         stackArray.push("2");
         stackArray.push("3");
-        assertEquals(Arrays.toString(arrayString), Arrays.toString(array));
+        assertEquals(Arrays.toString(strings1), Arrays.toString(strings));
+
     }
 
     @Test
-    void popListTest() {
+    void pop() {
 
-        StackList<Integer> stackList = new StackList<>(new ArrayList<>(5));
-        stackList.push(5);
-        stackList.push(7);
-        int deletedElement = stackList.pop();
-        assertEquals(7, deletedElement);
-    }
-    @Test
-    void popArray() {
+        Stack<String> stackList = new StackList<>(new ArrayList<>(),5);
+        stackList.push("5");
+        stackList.push("7");
+        String deletedElement = stackList.pop();
+        assertEquals("7", deletedElement);
 
-        String[] array = new String[5];
-        String[] arrayString = {"1", "2", null, null, null};
-        StackArray<String> stackArray = new StackArray<String>(array);
-        stackArray.push("1");
-        stackArray.push("2");
-        stackArray.push("3");
-        stackArray.pop();
-        assertEquals(Arrays.toString(arrayString), Arrays.toString(array));
+        Stack<String> stackArray = new StackArray<>(new String[5]);
+        stackArray.push("5");
+        stackArray.push("7");
+        String popedElement = stackArray.pop();
+        assertEquals("7", popedElement);
     }
+
 
     @Test
     void popErrorTest() {
 
-        StackList<String> stackList = new StackList<>(new ArrayList<>(5));
+        Stack<String> stackList = new StackList<>(new ArrayList<>(),5);
         String deletedElement = stackList.pop();
         assertNull(deletedElement);
+
+        Stack<String> stackArray = new StackArray<>(new String[5]);
+        String popedElement = stackArray.pop();
+        assertNull(popedElement);
     }
 
     @Test
-    void isEmptyList() {
+    void isEmpty() {
 
-        StackList<Integer> stackList = new StackList<>(new ArrayList<>(5));
+        Stack<Integer> stackList = new StackList<>(new ArrayList<>(),5);
         assertTrue(stackList.isEmpty());
-    }
 
-    @Test
-    void isNotEmptyList() {
-
-        StackList<Integer> stackList = new StackList<>(new ArrayList<>(5));
-        stackList.push(5);
-        assertFalse(stackList.isEmpty());
-    }
-
-    @Test
-    void isEmptyArray() {
-
-        String[] array = new String[5];
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<String> stackArray = new StackArray<>(new String[5]);
         assertTrue(stackArray.isEmpty());
     }
 
     @Test
-    void isNotEmptyArray() {
+    void isNotEmpty() {
 
-        String[] array = new String[5];
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<String> stackArray = new StackArray<>(new String[5]);
         stackArray.push("1");
         stackArray.push("2");
         stackArray.push("3");
         assertFalse(stackArray.isEmpty());
-    }
 
-    @Test
-    void peekIntegerTest() {
-
-        StackList<Integer> stackList = new StackList<>(new ArrayList<>(5));
-        stackList.push(5);
-        stackList.push(7);
-        int element = stackList.peek();
-        assertEquals(7, element);
+        Stack<Integer> stackList = new StackList<>(new ArrayList<>(),5);
+        stackList.push(1);
+        stackList.push(2);
+        stackList.push(3);
+        assertFalse(stackList.isEmpty());
     }
 
     @Test
     void peek() {
 
-        String[] array = new String[5];
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<String> stackArray = new StackArray<>(new String[5]);
         stackArray.push("1");
         stackArray.push("2");
         stackArray.push("3");
         assertEquals("3", stackArray.peek());
+
+        Stack<Integer> stackList = new StackList<>(new ArrayList<>(),5);
+        stackList.push(1);
+        stackList.push(2);
+        stackList.push(3);
+        assertEquals(3, stackList.peek());
     }
 
     @Test
     void peekErrorTest() {
 
-        StackList<String> stackList = new StackList<>(new ArrayList<>(5));
-
+        StackList<String> stackList = new StackList<>(new ArrayList<>(),5);
         String element = stackList.peek();
         assertNull(element);
+
+        Stack<String> stackArray = new StackArray<>(new String[5]);
+        String element1 = stackArray.peek();
+        assertNull(element1);
     }
 
     @Test
     void isFull() {
 
-        String[] array = new String[5];
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<String> stackArray = new StackArray<>(new String[5]);
         stackArray.push("1");
         stackArray.push("2");
         stackArray.push("3");
         stackArray.push("4");
         stackArray.push("5");
         assertTrue(stackArray.isFull());
+
+        StackList<String> stackList = new StackList<>(new ArrayList<>(),5);
+        stackList.push("1");
+        stackList.push("2");
+        stackList.push("3");
+        stackList.push("4");
+        stackList.push("5");
+        assertTrue(stackList.isFull());
     }
 
     @Test
     void isNotFull() {
 
-        String[] array = new String[5];
-        StackArray<String> stackArray = new StackArray<String>(array);
+        Stack<Integer> stackList = new StackList<>(new ArrayList<>(), 5);
+        stackList.push(1);
+        stackList.push(2);
+        stackList.push(3);
+        assertFalse(stackList.isFull());
+
+        Stack<String> stackArray = new StackArray<>(new String[5]);
         stackArray.push("1");
         stackArray.push("2");
         stackArray.push("3");

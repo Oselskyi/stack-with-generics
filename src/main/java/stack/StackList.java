@@ -7,10 +7,12 @@ public class StackList<T> implements Stack<T> {
 
     private int top;
     ArrayList<T> stackList;
+    int capacity ;
 
-    public StackList(ArrayList<T> stackList) {
+    public StackList(ArrayList<T> stackList, int capacity) {
 
         top = -1;
+        this.capacity = capacity;
         this.stackList = stackList;
     }
 
@@ -57,6 +59,6 @@ public class StackList<T> implements Stack<T> {
 
     public boolean isFull() {
 
-        return top == stackList.size() - 1;
+        return top == capacity - 1;
     }
 }
